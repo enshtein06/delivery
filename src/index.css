@@ -1,0 +1,169 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.homepage {
+	padding: 2rem 3rem;
+	background-color: #fcfcfc;
+	display: flex;
+	justify-content: space-between;
+}
+
+.header {
+	padding: 1rem 2rem;
+	display: flex;
+	justify-content: space-between;
+	-webkit-box-shadow: 1px 2px 1rem #777;
+	-moz-box-shadow: 1px 2px 2rem #777;
+	box-shadow: 1px 2px 2rem #777;
+}
+.header a {
+	font-size: 1.8rem;
+	color: #777;
+} 
+
+.header button {
+	border: none;
+	padding: .6rem .9rem;
+	border-radius: 3px;
+	background-color: #008BD5;
+	color: white;
+	font-size: 1.6rem;
+	font-weight: 400;
+}
+
+a {
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+
+.pointsList {
+	flex-basis: 70%;
+
+}
+
+.pointsList * {
+	margin: 0;
+	padding: 0;
+}
+
+.pointsList a {
+	margin: 2rem 0;
+	display: block;
+	padding-bottom: .5rem;
+	border-bottom: 1px solid #333;
+}
+
+.pointsList a h3 {
+	color: #66BB6A;
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+.pointsList a p {
+	font-size: 1.4rem;
+	color: #4E342E;
+}
+
+.filterBlock {
+	flex-basis: 30%;
+	padding: 2rem 3rem;
+	padding-right: 0;
+	margin: 0 auto;
+}
+
+.filterBlock h2 {
+	font-size: 2.2rem;
+	color: #767;
+	font-weight: 400;
+	margin: 0;
+	text-align: center;
+}
+
+.filterBlock form {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem 0;
+}
+
+.filterBlock form > * {
+	padding: 1rem 2rem;
+	font-size: 1.5rem;
+	margin-top: 1rem;
+	border-radius: 4px;
+}
+
+.filterBlock form button {
+	color: white;
+	border: none;
+	background-color: #3F51B5;
+}
+
+.pointElement {
+	font-size: 1.5rem;
+	padding: 2rem 4rem;
+}
+
+.pointElement * {
+	padding: 0;
+	margin: 0;
+}
+
+.pointElement p {
+	margin: 1rem 0;
+}
+
+.authForm {
+	width: 50rem;
+	height: 30rem;
+	background: #455A64;
+	margin: 0 auto;
+	color: white;
+	border-radius: 1rem;
+	margin-top: 3rem;
+	padding: 2rem 3rem;
+	font-size: 1.5rem;
+}
+
+.authForm ul {
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+}
+
+.authForm ul li {
+	padding: 1rem 1.5rem;
+	background-color: #4CAF50;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 1.7rem;
+}
+
+.authForm input {
+	display: block;
+	font-size: 1.5rem;
+	width: calc(100% - 4rem);
+	padding: 1rem 2rem;
+	margin-bottom: 1rem;
+}
+
+.authForm form * {
+	border-radius: 3px;
+	border: none;
+}
+
+.authForm button {
+	width: 100%;
+	margin-top: 1rem;
+	padding: 1.2rem;
+	font-size: 1.7rem;
+	color: white;
+	background-color: #039BE5;
+}
