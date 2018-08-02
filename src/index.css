@@ -1,4 +1,4 @@
-body {
+registrationbody {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -138,6 +138,15 @@ a {
 	justify-content: space-around;
 }
 
+.authForm ul .registration {
+	background-color: #BF3E52;
+}
+
+.authForm ul .active {
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+}
+
 .authForm ul li {
 	padding: 1rem 1.5rem;
 	background-color: #4CAF50;
@@ -166,4 +175,5 @@ a {
 	font-size: 1.7rem;
 	color: white;
 	background-color: #039BE5;
+	cursor: pointer;
 }

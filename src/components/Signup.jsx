@@ -28,8 +28,8 @@ class Signup extends Component {
 		return (
 			<div className="authForm">
 				<ul>
-					<li onClick={() => this.changeAuth(true)}>Регистрация</li>
-					<li onClick={() => this.changeAuth(false)}>Уже есть аккаунт</li>
+					<li className={"registration " + (this.state.isSignup ? "active" : "")} onClick={() => this.changeAuth(true)}>Регистрация</li>
+					<li className={!this.state.isSignup ? "active" : ""} onClick={() => this.changeAuth(false)}>Уже есть аккаунт</li>
 				</ul>
 				<div>
 					<form onSubmit={this.handleSubmit}>

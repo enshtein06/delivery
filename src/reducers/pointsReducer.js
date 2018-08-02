@@ -7,49 +7,42 @@ import {
 	BY_NAME_INCREASING,
 	SORTING_CRITERIALS_CHANGED
 } from '../actions/types';
+import {fromJS, List, Map} from 'immutable';
 
-const initialState = {
-	points: [],
-	selectedPoint: {},
-	cities: [],
-	sortedPoints: [],
-	sortingCritirias: [BY_NAME_INCREASING, "Санкт-Петербург"],
+const initialState = fromJS({
+	points: List ([]),
+	selectedPoint: Map({}),
+	cities: List ([]),
+	sortedPoints: List ([]),
+	sortingCritirias: List([BY_NAME_INCREASING, "Санкт-Петербург"]),
 	loading: false, 
 	error: false
-}
+});
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_POINTS_START:
-			return {...state, loading: true}
+			return state.set('loading', true);
 		case LOAD_POINTS_SUCCESS: 
-			return {
-				...state,
-				points: action.payload,
+			return state.merge({
+				points: fromJS(action.payload),
 				loading: false,
 				error: false
-			}
+			});
 		case LOAD_POINTS_FAIL:
-			return {
-				...state,
-				error: true,
-				loading: false
-			}
+			return state.set('error', true).set('loading', false);
 		case LOAD_CITIES_SUCCESS:
-			return {
-				...state,
-				cities: action.payload
-			}
+			const sortedCities = action.payload.sort((a, b) => {
+				const nameA = a.toUpperCase();
+				const nameB = b.toUpperCase();
+				return (nameA === nameB ? 0 : (nameA > nameB ? 1 : -1));
+			});
+			return state.set('cities', fromJS(sortedCities));
 		case POINTS_SORTING:
-			return {
-				...state,
-				sortedPoints: action.payload
-			}
+			return state.set('sortedPoints', fromJS(action.payload));
 		case SORTING_CRITERIALS_CHANGED:
-			return {
-				...state,
-				sortingCritirias: action.payload
-			}
+			console.log(action.payload)
+			return state.set("sortingCritirias", List(action.payload))
 		default:
 			return state;
 	}

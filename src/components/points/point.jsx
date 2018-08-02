@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import {connect} from 'react-redux';
 import requireAuth from '../requireAuth';
 import * as pointsActions from '../../actions/points';
+import {getPoint} from '../../selector';
 
 const AnyReactComponent = ({ text }) => (
 	<div style={{
@@ -23,15 +24,14 @@ const AnyReactComponent = ({ text }) => (
 
 class PointPage extends Component {
 	componentWillMount () {
-		if(this.props.points) {
-			this.props.pointsLoadingStart();
-		}
+		this.props.pointsLoadingStart();
 	}
 	render () {
-		const code = this.props.match.params.code.toUpperCase();
-		const selectPoint = this.props.points.find(point => code === point.Code.toUpperCase());
+		//const code = this.props.match.params.code.toUpperCase();
+		//const selectPoint = this.props.points.find(point => code === point.Code.toUpperCase());
+		const {selectPoint} = this.props;
 		let renderModel = (<p>Loading...</p>)
-		if(this.props.points && selectPoint) {
+		if(selectPoint) {
 			const lng = Number.parseFloat(selectPoint.coordX).toFixed(2);
 			const lat = Number.parseFloat(selectPoint.coordY).toFixed(2);
 			const center = {lng: +lng, lat: +lat};
@@ -73,10 +73,9 @@ class PointPage extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	points: state.points.points,
-	selectedPoint: state.points.selectedPoint,
-	loading: state.points.loading
-})
+const mapStateToProps = (state, props) => {
+	return {
+	selectPoint: getPoint(state, props)
+}}
 
 export default requireAuth(connect(mapStateToProps, pointsActions)(PointPage));

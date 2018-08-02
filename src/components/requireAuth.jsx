@@ -11,7 +11,7 @@ export default (ChildComponent) => {
 	}
 
 	const mapStateToProps = state => ({
-		isAuth: state.auth.token !== null
+		isAuth: state.get('auth').get('token') !== null
 	})
 
 	return connect(mapStateToProps)(composedComponent);

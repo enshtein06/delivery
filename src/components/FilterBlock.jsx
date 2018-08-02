@@ -17,22 +17,18 @@ class FilterBlock extends Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const {points} = this.props;
 		const {city, name} = this.state;
-		this.props.pointsSorting(points, [name, city]);
+		//this.props.pointsSorting(points, [name, city]);
+		this.props.pointsSortingChangeCriteria([name, city]);
 	}
 	render () {
 		let renderModel = (<p>Loading...</p>)
-		if(this.props.cities.length > 0) {
-			const sortedCities = this.props.cities.sort((a, b) => {
-			const nameA = a.toUpperCase();
-			const nameB = b.toUpperCase();
-			return (nameA === nameB ? 0 : (nameA > nameB ? 1 : -1));
-		});
+		//console.log(this.props.cities)
+		if(this.props.cities.size > 0) {
 			renderModel = (
 				<form onSubmit={this.handleSubmit}>
 					<select value={this.state.city} onChange={this.handleCityChange} >
-						{sortedCities.map((city, index) => (
+						{this.props.cities.toJS().map((city, index) => (
 							<option value={city} key={index}>{city}</option>
 						))}
 					</select>
@@ -54,9 +50,8 @@ class FilterBlock extends Component {
 }
 
 const mapStateToProps = state => ({
-	cities: state.points.cities,
-	points: state.points.points,
-	criteria: state.points.sortingCritirias
+	cities: state.get("points").get("cities"),
+	criteria: state.get("points").get("sortingCritirias")
 })
 
 export default connect(mapStateToProps, pointsActions)(FilterBlock);

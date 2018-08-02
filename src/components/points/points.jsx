@@ -3,6 +3,7 @@ import {connect}from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as pointsActions from '../../actions/points';
 import requireAuth from '../requireAuth';
+import {getSortedPoints} from '../../selector';
 
 class Points extends Component {
 	constructor(props) {
@@ -11,19 +12,15 @@ class Points extends Component {
 	}
 
 	render () {
-		const {points, sortedPoints, criteria} = this.props;
+		const {sortedPoints} = this.props;
 		let renderModel = (<p>Loading...</p>);
-		if(this.props.points.length > 0) {
-			if(this.props.sortedPoints.length > 0) {
-				renderModel = sortedPoints.map(point => (
-					<Link key={point.Code} to={`/points/${point.Code}`}>
-						<h3>{point.Name}</h3>
-						<p>{point.FullAddress}</p>
-					</Link>
-				))
-			} else {
-				this.props.pointsSorting(points, criteria);
-			}
+		if(sortedPoints.length > 0) {
+			renderModel = sortedPoints.map(point => (
+				<Link key={point.Code} to={`/points/${point.Code}`}>
+					<h3>{point.Name}</h3>
+					<p>{point.FullAddress}</p>
+				</Link>
+			))
 			
 		}
 		return (
@@ -35,11 +32,14 @@ class Points extends Component {
 }
 
 const mapStateToProps = state => {
-	return {
+	/*return {
 		points: state.points.points,
 		cities: state.points.cities,
 		sortedPoints: state.points.sortedPoints,
 		criteria: state.points.sortingCritirias
+	}*/
+	return {
+		sortedPoints: getSortedPoints(state)
 	}
 }
 
